@@ -1,0 +1,18 @@
+def createDir = {
+    path ->
+        File dir = new File(path)
+        if(!dir.exists()) {
+            dir.mkdirs()
+        }
+}
+
+task makeJavaTestDir() {
+    def paths = ['app/src/test/java/com.bob.gradle']
+
+    doFirst{
+        paths.forEach(
+                createDir
+        )
+    }
+}
+
