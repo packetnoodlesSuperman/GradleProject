@@ -1,0 +1,21 @@
+apply plugin: 'maven'
+apply plugin: 'groovy'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.2.0'
+    implementation 'org.aspectj:aspectjtools:1.8.9'
+    implementation 'org.javassist:javassist:3.20.0-GA'
+}
+
+
+//这里建议使用 Java7
+//sourceCompatibility = "1.7"
+//targetCompatibility = "1.7"
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}

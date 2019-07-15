@@ -16,3 +16,23 @@ task makeJavaTestDir() {
     }
 }
 
+task print << { // gradle -q print 可以执行task
+
+    // << 符号表示 doLast 语句
+    println 'Hello Gradle'
+}
+
+task count << {
+    4.times {
+        println("$it")  //隐式参数 ($it) 的值
+        println "$it"  //函数括号是可选的
+    }
+}
+
+task each << {
+    String name = "Hello Gradle"
+    name.each {
+        println "$it"
+    }
+}
+
