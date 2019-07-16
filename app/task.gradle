@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 def createDir = {
     path ->
         File dir = new File(path)
@@ -33,6 +35,32 @@ task each << {
     String name = "Hello Gradle"
     name.each {
         println "$it"
+    }
+}
+
+//查找该目录文件最后修改时间是2019年的
+task find << {
+    File file = new File("D:\\AndroidSDK\\sources\\android-28");
+    File[] files = file.listFiles()
+    files.each {
+        test(it)
+    }
+}
+
+private void test(File file) {
+    SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    if (file.isFile()) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(file.lastModified())
+        if (calendar.get(Calendar.YEAR) == 2019) {
+            System.out.println(simple.format(calendar.getTime()) + file.getAbsolutePath()+file.getName())
+        }
+    }
+    if (file.isDirectory()) {
+        File[] files = file.listFiles()
+        files.each {
+            test(it)
+        }
     }
 }
 
